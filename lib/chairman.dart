@@ -44,6 +44,8 @@ class _MyChairmanState extends State<MyChairman> {
           .showSnackBar(SnackBar(content: Text('invalid')));
     } else {
       if (response.statusCode == 200) {
+        print(response.body);
+        print(response);
         jsonresponse.map((e) => model.fromjson(e));
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => DishplayChairmen()));
@@ -52,6 +54,7 @@ class _MyChairmanState extends State<MyChairman> {
       }
     }
   }
+  bool change = false;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +116,14 @@ class _MyChairmanState extends State<MyChairman> {
                       }
                       null;
                     },
+                    obscureText: !change,
                     decoration: InputDecoration(
+                      
+                      suffixIcon: IconButton(onPressed: (){
+                        setState(() {
+                          change = !change;
+                        });
+                      }, icon: Icon(change?Icons.visibility:Icons.visibility_off)  ),
                         hintText: 'Password',
                         fillColor: Colors.white,
                         prefixIcon: Icon(Icons.password),

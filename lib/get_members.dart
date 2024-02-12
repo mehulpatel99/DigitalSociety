@@ -121,7 +121,7 @@ class _Get_MemberDataState extends State<Get_MemberData> {
               } else if (snapshot.hasError) {
                 Text('Error');
               }
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }),
       ),
     );

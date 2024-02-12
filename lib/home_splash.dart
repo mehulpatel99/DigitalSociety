@@ -14,7 +14,7 @@ class MySplash extends StatefulWidget {
 class _MySplashState extends State<MySplash> {
 
 MySplashchange()async{
-  await Future.delayed(Duration(seconds: 5),(){
+  await Future.delayed(Duration(seconds: 7),(){
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Register_Screen()));
   });
 }

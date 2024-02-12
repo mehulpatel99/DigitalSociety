@@ -11,6 +11,7 @@ import 'package:digitalsociety/home_splash.dart';
 import 'package:digitalsociety/member_login.dart';
 // import 'package:digitalsociety/home.dart';
 import 'package:digitalsociety/member_reg.dart';
+import 'package:digitalsociety/new_homeScreen/new_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 

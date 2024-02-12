@@ -10,9 +10,11 @@ class addcomplain extends StatefulWidget {
   @override
   State<addcomplain> createState() => _addcomplainState();
 }
+
 TextEditingController topicComplain = TextEditingController();
 TextEditingController descComplain = TextEditingController();
 TextEditingController dateComplain = TextEditingController();
+
 class _addcomplainState extends State<addcomplain> {
   Future<void> myaddcomplain(String? topic,description,date)async{
     final response = await http.post(Uri.parse('https://unmusical-boil.000webhostapp.com/addComplaints.php'),
@@ -22,17 +24,18 @@ class _addcomplainState extends State<addcomplain> {
       'date':date
     }
     );
-    print(response.statusCode.toString());
+    // print(response.statusCode.toString());
     if(response.statusCode==200){
      print('succesfully post my data');
+    //  print(response.body);
        complainModel.fromjson(jsonDecode(response.body) as Map<String,dynamic>);
+      //  print(complainModel);
+
         Get.snackbar('Complain', 'Succesfully add');
     }else{
       throw Exception('somthing went wrong');
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,6 @@ class _addcomplainState extends State<addcomplain> {
       ),
       body: Center(
         child: Container(
-         
           height: MediaQuery.of(context).size.height,
           width: 400,
           // color: Colors.grey[400],
@@ -83,6 +85,11 @@ class _addcomplainState extends State<addcomplain> {
                myaddcomplain(topicComplain.text, descComplain.text, dateComplain.text);
               //  Get.to(addcomplain());
               //  print('Succesfully post');
+              setState(() {
+                topicComplain.clear();
+                descComplain.clear();
+                dateComplain.clear();
+              });
             
               
             }, child: Text('Submit'))

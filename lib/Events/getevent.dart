@@ -51,19 +51,33 @@ class _GetEventState extends State<GetEvent> {
           List<eventmodel> mylist = snapshot.data!;
           print("----->>> list of data ");
           return ListView.builder(itemCount: mylist.length,itemBuilder: (context,index){
-            return Card(child: Column(children: [
-              Text('Id : ${mylist[index].id}'),
-                Text('Title : ${mylist[index].titlee}'),  
-                  Text('Description : ${mylist[index].descriptione}'),
-                    Text('Date : ${mylist[index].datee}'),
-                    ElevatedButton.icon(onPressed: (){
-                      setState(() {
-                        deleteevent(mylist[index].id);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>GetEvent()));
-                      });
-                      
-                    }, icon: Icon(Icons.delete), label: Text('Delete'))
-            ],),);
+            return Card(child:
+             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Row(
+                children: [
+                  Text(' ${mylist[index].id}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                  Text('.Title : ${mylist[index].titlee}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),  
+                ],
+              ),
+                   Text('Date : ${mylist[index].datee}',style: TextStyle(fontSize: 17,fontWeight: FontWeight.w500),),
+                  Text('Description : ${mylist[index].descriptione}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
+                   
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(onPressed: (){
+                          setState(() {
+                            deleteevent(mylist[index].id);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>GetEvent()));
+                          });
+                          
+                        }, icon: Icon(Icons.delete), label: Text('Delete')),
+                      ],
+                    )
+            ],),
+            );
           });
         }else if(snapshot.hasError){
           SizedBox();

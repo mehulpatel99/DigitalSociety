@@ -202,7 +202,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                               if (formkey.currentState!.validate()) {
                                 mypost(name2.text, contact2.text, houseno2.text,
                                     email2.text, pass2.text);
-                                    Get.to(DishplayMember());
+                                    Get.to(Member_login());
                               }
                             },
                             child: Text(
@@ -213,7 +213,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                           )),
                       TextButton(
                           onPressed: () {
-                            Get.to(Member_login());
+                            // Get.to(Member_login());
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Member_login()));
                           },
                           child: Text(
                             'Login',

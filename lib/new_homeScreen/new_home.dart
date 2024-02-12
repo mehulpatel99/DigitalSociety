@@ -1,29 +1,40 @@
-import 'package:digitalsociety/Events/addevent.dart';
+import 'package:digitalsociety/Events/getevent.dart';
 import 'package:digitalsociety/Notice/getnotice.dart';
-import 'package:digitalsociety/Notice/noticeadd.dart';
-import 'package:digitalsociety/complaint/getcomplain.dart';
+import 'package:digitalsociety/complaint/addcomplain.dart';
 import 'package:digitalsociety/get_members.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
-class DishplayChairmen extends StatefulWidget {
-  const DishplayChairmen({super.key});
+class NewHome extends StatefulWidget {
+  String? id;
+  String? name;
+  String? houseno;
+  String? contact;
+  String? email;
+  NewHome(
+      {super.key,
+      required this.id,
+      required this.contact,
+      required this.email,
+      required this.houseno,
+      required this.name});
 
   @override
-  State<DishplayChairmen> createState() => _DishplayChairmenState();
+  State<NewHome> createState() => _NewHomeState();
 }
 
-class _DishplayChairmenState extends State<DishplayChairmen> {
+class _NewHomeState extends State<NewHome> {
+  var height, width;
+
   @override
   Widget build(BuildContext context) {
-    var height,width;
-    height=MediaQuery.of(context).size.height;
+    height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.grey[400],
-      appBar: AppBar(backgroundColor: Colors.blue,title: Text('Digital Society'),leading: Icon(Icons.home),),
-       body:  Container(
+      body:
+       Container(
           color: Colors.indigo,
           child: Column(
             children: [
@@ -36,12 +47,14 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                          const EdgeInsets.only(top: 35, left: 20, right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+
+                            },
                             child: Icon(
                               Icons.sort,
                               size: 40,
@@ -100,7 +113,7 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           topRight: Radius.circular(50))),
-                  height: height * 0.62,
+                  height: height * 0.75,
                   // height: 500,
                   width: width,
                   child: Column(
@@ -153,7 +166,7 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(NoticeAdd());
+                              Get.to(GetNotice());
                             },
                             child: Container(
                               height: 200,
@@ -199,7 +212,7 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.to(GetComplain());
+                              Get.to(addcomplain());
                             },
                             child: Container(
                               height: 200,
@@ -241,7 +254,7 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(AddEvent());
+                              Get.to(GetEvent());
                             },
                             child: Container(
                               height: 200,
@@ -284,168 +297,79 @@ class _DishplayChairmenState extends State<DishplayChairmen> {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 60,
                       ),
-                      // Container(
-                      //   height: 100,
-                      //   child: Card(
-                      //     elevation: 20,
-                      //     child: ListTile(
-                      //       onTap: () {
-                      //         Get.bottomSheet(Container(
-                      //           width: double.maxFinite,
-                      //           child: Card(
-                      //             child: Column(
-                      //               mainAxisAlignment: MainAxisAlignment.center,
-                      //               children: [
-                      //                 Lottie.network(
-                      //                     'https://lottie.host/fc366057-47df-4464-b3b3-c47bc56fc2a8/BkX41a7RUZ.json',
-                      //                     height: 200,
-                      //                     width: 200),
-                      //                 Text(
-                      //                   'Member Detail',
-                      //                   style: TextStyle(
-                      //                       fontSize: 30,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 Divider(),
-                      //                 Text(
-                      //                   'Name : ${widget.name} ',
-                      //                   style: TextStyle(
-                      //                       fontSize: 20,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 Text(
-                      //                   'Contact : ${widget.contact}  ',
-                      //                   style: TextStyle(
-                      //                       fontSize: 20,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 Text(
-                      //                   'Housenp. : ${widget.houseno}  ',
-                      //                   style: TextStyle(
-                      //                       fontSize: 20,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
-                      //                 Text('Email :  ${widget.email} ',
-                      //                     style: TextStyle(
-                      //                         fontSize: 20,
-                      //                         fontWeight: FontWeight.bold)),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ));
-                      //       },
-                      //       leading: CircleAvatar(
-                      //         backgroundImage: NetworkImage(
-                      //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVA_HrQLjkHiJ2Ag5RGuwbFeDKRLfldnDasw&usqp=CAU'),
-                      //       ),
-                      //       // title: Text(
-                      //       //   'Name : ${widget.name}',
-                      //       //   style: TextStyle(
-                      //       //       fontSize: 20, fontWeight: FontWeight.bold),
-                      //       // ),
-                      //       // subtitle: Text(
-                      //       //   'Houseno : ${widget.houseno}',
-                      //       //   style: TextStyle(
-                      //       //       fontSize: 15, fontWeight: FontWeight.w500),
-                      //       // ),
-                      //     ),
-                      //   ),
-                      // ),
+                      Container(
+                        height: 100,
+                        child: Card(
+                          elevation: 20,
+                          child: ListTile(
+                            onTap: () {
+                              Get.bottomSheet(Container(
+                                width: double.maxFinite,
+                                child: Card(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.network(
+                                          'https://lottie.host/fc366057-47df-4464-b3b3-c47bc56fc2a8/BkX41a7RUZ.json',
+                                          height: 200,
+                                          width: 200),
+                                      Text(
+                                        'Member Detail',
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Divider(),
+                                      Text(
+                                        'Name : ${widget.name} ',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Contact : ${widget.contact}  ',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Housenp. : ${widget.houseno}  ',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text('Email :  ${widget.email} ',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ));
+                            },
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVA_HrQLjkHiJ2Ag5RGuwbFeDKRLfldnDasw&usqp=CAU'),
+                            ),
+                            title: Text(
+                              'Name : ${widget.name}',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              'Houseno : ${widget.houseno}',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ))
             ],
-          )), 
-      // Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Container(
-      //       height: 200,
-      //       width: 400,
-      //       // color: Colors.white,
-      //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),gradient: LinearGradient(colors: [Colors.pink,Colors.green,Colors.white],begin: Alignment.topRight,end: Alignment.bottomRight)),
-      //     child: Lottie.network('https://lottie.host/4fc6ba73-645f-49ea-bd3f-d2a8917ad671/SMSvzyzhMZ.json'),
-      //     ),
-      //     SizedBox(height: 10,),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //       GestureDetector(
-      //         onTap: (){
-      //           Get.to(Get_MemberData());
-      //         },
-      //         child: Container(
-      //           height: 200,
-      //           width: 200,
-      //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image:DecorationImage(image: NetworkImage('https://thumbs.dreamstime.com/b/flat-illustration-society-members-large-group-o-men-women-population-modern-global-network-concept-49822215.jpg'))),
-      //             child: Column(
-      //               children: [
-      //                 SizedBox(height: 170,),
-      //                 Card(child: Text('  Members  ',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-      //               ],
-      //             ),
-      //         ),
-      //       ),
-            
-      //        GestureDetector(
-      //         onTap: (){
-      //           Get.to(NoticeAdd());
-      //         },
-      //         child: Container(
-      //           height: 200,
-      //           width: 200,
-      //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image:DecorationImage(image: NetworkImage('https://img.freepik.com/free-photo/reminder-popup-bell-notification-alert-alarm-icon-sign-symbol-application-website-ui-purple-background-3d-rendering-illustration_56104-1304.jpg'),fit: BoxFit.fill)),
-      //             child: Column(
-      //               children: [
-      //                 SizedBox(height: 100,),
-      //                 Text('Notice',style: TextStyle(color: Colors.black),),
-      //                 SizedBox(height: 50,),
-      //                 Card(child: Text('  Notice  ',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-      //               ],
-      //             ),
-      //         ),
-      //       ),
-      //     ],),
-      //     SizedBox(height: 20,),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //       GestureDetector(
-      //         onTap: (){
-      //           Get.to(GetComplain());
-      //         },
-      //         child: Container(
-      //           height: 200,
-      //           width: 200,
-      //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image:DecorationImage(image: NetworkImage('https://www.shutterstock.com/image-vector/furious-boss-megaphone-head-shouting-260nw-2184942351.jpg'),fit: BoxFit.fill)),
-      //             child: Column(
-      //               children: [
-      //                 SizedBox(height: 170,),
-      //                 Card(child: Text('  Complaints  ',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-      //               ],
-      //             ),
-      //         ),
-      //       ),
-            
-      //        GestureDetector(
-      //         onTap: (){
-      //           Get.to(AddEvent());
-      //         },
-      //         child: Container(
-      //           height: 200,
-      //           width: 200,
-      //           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),image:DecorationImage(image: NetworkImage('https://media.istockphoto.com/id/978975308/vector/upcoming-events-neon-signs-vector-upcoming-events-design-template-neon-sign-light-banner-neon.jpg?s=612x612&w=0&k=20&c=VMCoJJda9L17HVkFOFB3fyDpjC4Qu2AsyYn3u4T4F4c='),fit: BoxFit.fill)),
-      //             child: Column(
-      //               children: [
-      //                 SizedBox(height: 170,),
-      //                 Card(child: Text('  Events  ',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-      //               ],
-      //             ),
-      //         ),
-      //       ),
-      //     ],)
-      // ],),
+          )),
     );
   }
 }

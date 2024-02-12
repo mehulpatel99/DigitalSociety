@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:digitalsociety/Notice/noticemodel.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +44,12 @@ class _NoticeAddState extends State<NoticeAdd> {
       body: Center(
         child: Form(
            key: formkey,
-          child: Container(
-            height: 400,
+          child: Card(
+           
+            child: Container(
+               height: 400,
             width: 400,
-            child: Card(
-              color: Colors.grey,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.purple,Colors.orange,Colors.pink],begin: Alignment.topRight,end: Alignment.bottomLeft)),
               child: Stack(
                 // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -70,6 +72,8 @@ class _NoticeAddState extends State<NoticeAdd> {
                       }return null;
                     },
                     decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
                       label: Text('Topic'),
                       prefixIcon: Icon(Icons.topic),
                       hintText: 'Topic',border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
@@ -86,6 +90,8 @@ class _NoticeAddState extends State<NoticeAdd> {
                       }return null;
                     },
                     decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
                       label: Text('Description'),
                       prefixIcon: Icon(Icons.description),
                       hintText: 'Description',border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
@@ -95,6 +101,7 @@ class _NoticeAddState extends State<NoticeAdd> {
                 Padding(
                   padding: const EdgeInsets.only(top: 330,left: 140),
                   child: ElevatedButton(onPressed: (){
+                    
                     if(formkey.currentState!.validate()){
                        noticepost(titleCon.text, descCon.text);
                     }
